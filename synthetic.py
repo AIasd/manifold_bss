@@ -74,11 +74,11 @@ if __name__ == "__main__":
 
     fig.add_subplot(2, 3, 4)
     plot_samples(X_recovered / np.std(X_recovered))
-    plt.title('Recovered Signal via Isomap')
+    plt.title('Recovered(Isomap)')
 
     fig.add_subplot(2, 3, 5)
     plot_samples(S_ica_ / S_ica_.std(axis=0))
-    plt.title('Recovered Signal via Isomap+ICA')
+    plt.title('Recovered(Isomap+ICA)')
 
     plt.subplots_adjust(0.09, 0.04, 0.94, 0.94, 0.26, 0.36)
     plt.show()

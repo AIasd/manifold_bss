@@ -8,8 +8,9 @@ from sklearn.manifold import Isomap, TSNE
 
 # Plot results in 2D
 def plot_samples(S, axis_list=None):
-    plt.scatter(S[:, 0], S[:, 1], s=2, marker='o', zorder=10,
-                color='steelblue', alpha=0.5)
+    colorize = dict(c=X[:, 0], cmap=plt.cm.get_cmap('rainbow', 5))
+    plt.scatter(S[:, 0], S[:, 1], **colorize, s=2, marker='o', zorder=10,
+                alpha=0.5)
     plt.hlines(0, -3, 3)
     plt.vlines(0, -3, 3)
     plt.xlim(-3, 3)
@@ -56,8 +57,9 @@ if __name__ == "__main__":
     # Rotate axes via ICA
     ica = FastICA(random_state=rng)
     # Estimate the sources
-    S_isomap = ica.fit(X_isomap).transform(X_isomap)
     S_tsne = ica.fit(X_tsne).transform(X_tsne)
+    S_isomap = ica.fit(X_isomap).transform(X_isomap)
+
 
     # #############################################################################
 
@@ -71,8 +73,8 @@ if __name__ == "__main__":
     plt.title('Observations')
 
     ax = fig.add_subplot(3, 3, 3, projection='3d')
-    # colorize = dict(c=X[:, 0], cmap=plt.cm.get_cmap('rainbow', 5))
-    ax.scatter3D(XS[:, 0], XS[:, 1], XS[:, 2])
+    colorize = dict(c=X[:, 0], cmap=plt.cm.get_cmap('rainbow', 5))
+    ax.scatter3D(XS[:, 0], XS[:, 1], XS[:, 2], **colorize)
     plt.title('Manifold')
 
     fig.add_subplot(3, 3, 4)
